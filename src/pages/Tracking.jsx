@@ -5,6 +5,7 @@ import { getTrackingData } from "../database";
 import WorldMap from "../components/WorldMap";
 import RouteTimeline from "../components/RouteTimeline";
 import ImagePreview from "../components/ImagePreview";
+import NotFoundPage from "./NotFoundPage";
 
 /* ================= Loading Spinner ================= */
 const LoadingSpinner = () => (
@@ -26,17 +27,34 @@ export default function Tracking() {
   const [loading, setLoading] = useState(false);
   const [hasTracked, setHasTracked] = useState(false);
   const [previewImage, setPreviewImage] = useState(null);
+  const [notFound, setNotFound] = useState(false);
 
   const handleTrack = () => {
+    if (!trackingId.trim()) return;
+
     setHasTracked(true);
     setLoading(true);
     setShipment(null);
+    setNotFound(false);
 
     setTimeout(() => {
       const data = getTrackingData(trackingId.trim().toUpperCase());
-      setShipment(data);
+
+      if (!data) {
+        setNotFound(true);
+      } else {
+        setShipment(data);
+      }
+
       setLoading(false);
     }, 1200);
+  };
+
+  const resetSearch = () => {
+    setTrackingId("");
+    setShipment(null);
+    setHasTracked(false);
+    setNotFound(false);
   };
 
   return (
@@ -60,6 +78,11 @@ export default function Tracking() {
           <input
             value={trackingId}
             onChange={(e) => setTrackingId(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                handleTrack();
+              }
+            }}
             placeholder="Enter Tracking ID"
             className="w-full border rounded-lg px-4 py-2 text-black"
           />
@@ -73,6 +96,15 @@ export default function Tracking() {
 
         {loading && <LoadingSpinner />}
 
+        {/* ❌ NOT FOUND STATE */}
+        {!loading && hasTracked && notFound && (
+          <NotFoundPage
+            trackingId={trackingId.toUpperCase()}
+            onRetry={resetSearch}
+          />
+        )}
+
+        {/* ✅ FOUND SHIPMENT */}
         {!loading && hasTracked && shipment && (
           <>
             <h3 className="text-xl font-semibold mb-2">
