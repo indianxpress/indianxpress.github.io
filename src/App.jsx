@@ -8,6 +8,7 @@ import Services from "./pages/Services";
 import Tracking from "./pages/Tracking";
 import Quote from "./pages/Quote";
 import Contact from "./pages/Contact";
+import NotFoundPage from "./pages/NotFoundPage";
 
 export default function App() {
   return (
@@ -21,6 +22,9 @@ export default function App() {
           <Route path="/tracking" element={<Tracking />} />
           <Route path="/quote" element={<Quote />} />
           <Route path="/contact" element={<Contact />} />
+           <Route path="/shipment-not-found" element={<NotFoundPage />} />
+
+           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>
       <Footer />
