@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Search } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export default function Hero() {
   return (
@@ -45,18 +46,18 @@ export default function Hero() {
           animate={{ opacity: 1 }}
           transition={{ delay: 0.9, duration: 0.8 }}
         >
-          <a
-            href="/quote"
+          <Link
+            to="/quote"
             className="flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg shadow-lg transition"
           >
             Get a Quote <ArrowRight size={18} />
-          </a>
-          <a
-            href="/tracking"
+          </Link>
+          <Link
+            to="/tracking"
             className="flex items-center justify-center gap-2 border border-white hover:bg-white hover:text-blue-700 px-6 py-3 rounded-lg transition"
           >
             <Search size={18} /> Track Shipment
-          </a>
+          </Link>
         </motion.div>
       </motion.div>
     </section>
