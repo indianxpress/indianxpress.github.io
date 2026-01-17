@@ -89,7 +89,7 @@ const shipmentsDB = {
 
     pausedReason:
       ["Aviation Clearance for Domestic Transport",
-        "Broker and Port Handling Fee - $135"
+        "Broker and Port Handling Fee - $193.35"
       ],
 
     packageDetails: [
