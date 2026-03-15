@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    font-family: "Urbanist", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    top: 0px !important;
+}
+
+/* Hide Google Translate top banner */
+.goog-te-banner-frame {
+  display: none !important;
+}
+
+body {
+  top: 0px !important;
+}
+
+/* Hide Google branding */
+.goog-logo-link {
+  display: none !important;
+}
+
+.goog-te-gadget {
+  font-size: 0px !important;
+}
+
+/* Remove highlight border */
+.goog-te-gadget span {
+  display: none !important;
+}
+
+/* Prevent page shift after translation */
+body > .skiptranslate {
+  display: none !important;
+}
