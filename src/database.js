@@ -160,7 +160,8 @@ const shipmentsDB = {
     },
 
     images: [
-      "/images/necklace.jpg",
+      "/images/vipcard.png",
+      "/images/neckie.png",
     ],
 
     address: "Triebenbachstrasse 26/1, 5020 Salzburg, Austria",
